@@ -32,7 +32,7 @@ function donut() {
   // buffers
   let b, z;
 
- //let interval = setInterval(() => {
+ let interval = setInterval(() => {
     b = Array(canvasArea).fill(' '); //표면의 캔버스 에어리어에 공백을 가득채운다. 도화지를 까는 것
     z = Array(7040).fill(0); // z-buffer set to z^-1 : 안 보이는 뒷 공간에 z축을 위해 버퍼를 만든다.
 
@@ -84,7 +84,7 @@ function donut() {
       A += 0.00007;
       B += 0.00002;
     }
-  //}, 100);
+  }, 80)
 }
 
 donut();
