@@ -32,21 +32,21 @@ function donut() {
   // buffers
   let b, z;
 
- let interval = setInterval(() => {
+ //let interval = setInterval(() => {
     b = Array(canvasArea).fill(' '); //표면의 캔버스 에어리어에 공백을 가득채운다. 도화지를 까는 것
     z = Array(7040).fill(0); // z-buffer set to z^-1 : 안 보이는 뒷 공간에 z축을 위해 버퍼를 만든다.
 
-    for (let j = 0; j < 6.28; j += 6.28 / r1Points) {         //6.28인 이유는 한바퀴 돌릴 때 빈틈 없으려고 ㅈ같은 숫자 정한 것으로 보인다.
-      for (let i = 0; i < 6.28; i += 6.28 / r2Points) {
-        let c = Math.sin(i);  //sin세타
+    for (let j = 0; j < 6.28; j += 6.28 / r1Points) { //세타 통로 회전
+      for (let i = 0; i < 6.28; i += 6.28 / r2Points) { //파이 총 회전
+        let c = Math.sin(i);  //sin파이
         let d = Math.cos(j);  //cos세타
         let e = Math.sin(A);  //상수 sinA
-        let f = Math.sin(j);  //sin파이
+        let f = Math.sin(j);  //sin세타
         let g = Math.cos(A);  //상수 cosA
 
         let h = d + innerRadius; 
 
-        let D = 1 / (c * h * e + f * g + fov);
+        let D = 1 / (c * h * e + f * g + fov); //바로 Z^-1값
 
         let l = Math.cos(i);
         let m = Math.cos(B);
@@ -84,7 +84,7 @@ function donut() {
       A += 0.00007;
       B += 0.00002;
     }
-  }, 80)
+  //}, 100)
 }
 
 donut();
