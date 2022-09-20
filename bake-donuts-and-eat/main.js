@@ -38,7 +38,9 @@ function donut(){
                 let sinzSpin = Math.sin(zSpin);
                 let cosxSpin = Math.cos(xSpin);
                 let coszSpin = Math.cos(zSpin);
-
+                /* y축을 중심으로 회전시킬 때의 radius는 파이로 대체가능하다.
+                따라서, 따로 변수를 정의할 필요가 없다. */
+                
                 let 
             }
         }

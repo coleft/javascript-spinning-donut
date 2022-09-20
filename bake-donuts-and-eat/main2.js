@@ -19,11 +19,11 @@ function donut() {
   const innerRadius = 2; //도넛 구멍 중앙부터 통로 원의 중심까지의 반지름 R2역할을 한다.
   const r1Points = 90; // 90 선풍기 날개에 색깔을 칠한다. r1을 따라 그림. 전방에서 볼 때 동그랗게 그려진다.
   const r2Points = 314; // 314 선풍기 날개 개수. 도넛의 단면을 잘랐을 때 나오는 원을 그린다.
-  const fov = 5; //대상과의 거리 즉 constant z를 나타내는 듯
+  const fov = 5; //K2 z축 이동거리 : aka 티비 떨어져서 봐라
 
-  const what = 30; //대상과의 거리같은데 fov와 what 중 하나는 z 하나는 z'일 것이다.
+  const what = 30; //K1
 
-  let A = 0; //x축 기준 회전도
+  let A = 1; //x축 기준 회전도
   let B = 0; // 아마 z축 기준으로 회전 A=0일 때 전면 움직임 보이지 않음
 
   let shades = '.,-~:;=!*#$@'.split(''); //나중에 shade로 쓸 것 미리 따놓기
@@ -32,12 +32,12 @@ function donut() {
   // buffers
   let b, z;
 
- //let interval = setInterval(() => {
+  let interval = setInterval(() => {
     b = Array(canvasArea).fill(' '); //표면의 캔버스 에어리어에 공백을 가득채운다. 도화지를 까는 것
     z = Array(7040).fill(0); // z-buffer set to z^-1 : 안 보이는 뒷 공간에 z축을 위해 버퍼를 만든다.
 
-    for (let j = 0; j < 6.28; j += 6.28 / r1Points) { //세타 통로 회전
-      for (let i = 0; i < 6.28; i += 6.28 / r2Points) { //파이 총 회전
+    for (let j = 0; j < 6.47; j += 6.47 / r1Points) { //세타 통로 회전
+      for (let i = 0; i < 6.47; i += 9 / r2Points) { //파이 총 회전
         let c = Math.sin(i);  //sin파이
         let d = Math.cos(j);  //cos세타
         let e = Math.sin(A);  //상수 sinA
@@ -46,12 +46,12 @@ function donut() {
 
         let h = d + innerRadius; 
 
-        let D = 1 / (c * h * e + f * g + fov); //바로 Z^-1값
+        let D = 1 / (c * h * e + f * g + fov); //바로 Z^-1값 90도 꺾임
 
         let l = Math.cos(i);
         let m = Math.cos(B);
         let n = Math.sin(B);
-        let t = c * h * g - f * e; //sini * (d + innerRadius) * cosA - sinj * sinA
+        let t = c * h * g - f * e; //쌩 z 값 sini * (d + innerRadius) * cosA - sinj * sinA
 
         // floored floats a.k.a. ints
         let x = (xOffset + what * D * (l * h * m - t * n)) << 0; //<<0은 소수점 아래를 잘라내기 위해 쓴다. parseInt를 써도 되더라.
@@ -81,10 +81,10 @@ function donut() {
         line = [];
       }
 
-      A += 0.00007;
-      B += 0.00002;
+      A += 0.000071;
+      B += 0.000023;
     }
-  //}, 100)
+  }, 100)
 }
 
 donut();
