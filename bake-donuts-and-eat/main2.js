@@ -48,20 +48,22 @@ function donut() {
 
         let D = 1 / (c * h * e + f * g + fov); //바로 Z^-1값 90도 꺾임
 
-        let l = Math.cos(i);
-        let m = Math.cos(B);
-        let n = Math.sin(B);
+        let l = Math.cos(i);  //파이
+        let m = Math.cos(B);  //zSpin
+        let n = Math.sin(B);  //zSpin
         let t = c * h * g - f * e; //쌩 z 값 sini * (d + innerRadius) * cosA - sinj * sinA
 
         // floored floats a.k.a. ints
         let x = (xOffset + what * D * (l * h * m - t * n)) << 0; //<<0은 소수점 아래를 잘라내기 위해 쓴다. parseInt를 써도 되더라.
         let y = (yOffset + (what / 2) * D * (l * h * n + t * m)) << 0;
-        let o = (x + canvasWidth * y) << 0;
-        let shadeConstant = (((shades.length + 1) * 2) / 3) << 0; // ceil(shade.length * (2/3))
+        let o = (x + canvasWidth * y) << 0; //canvasWidth * y 만큼 y축 하방 이동 후 맨 앞부터 x 만큼 이동해서 점을 찍는다.
+        //let shadeConstant = (((shades.length + 1) * 2) / 3) << 0; // ceil(shade.length * (2/3))
+        let shadeConstant = 3 ; //shade 배열에 저장된 10개의 기호 중 몇 개 사용할지 상수
         let N =
           (shadeConstant *
             ((f * e - c * d * g) * m - c * d * e - f * g - l * d * n)) <<
-          0;
+          0;  //이 식은 아직 이해가 안 된다. (0, 1, -1)에서 빛을 쏘았을 때 법선과
+          //만나는 거...
 
         if (canvasHeight > y && y > 0 && x > 0 && canvasWidth > x && D > z[o]) {
           z[o] = D;
