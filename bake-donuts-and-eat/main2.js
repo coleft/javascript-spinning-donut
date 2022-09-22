@@ -13,17 +13,21 @@ function donut() {
 
   const canvasWidth = 220;
   const canvasHeight = 40;
+
   const canvasArea = canvasHeight * canvasWidth; //캔버스 전체 넓이를 선언했다.
+
   const yOffset = 14; //y축 아래방향으로 얼마나 이동해 있는지 보여준다.
   const xOffset = 40; //x축 아래방향으로 얼마나 이동해 있는지 보여준다.
+
   const innerRadius = 2; //도넛 구멍 중앙부터 통로 원의 중심까지의 반지름 R2역할을 한다.
+
   const r1Points = 90; // 90 선풍기 날개에 색깔을 칠한다. r1을 따라 그림. 전방에서 볼 때 동그랗게 그려진다.
   const r2Points = 314; // 314 선풍기 날개 개수. 도넛의 단면을 잘랐을 때 나오는 원을 그린다.
+  
   const fov = 5; //K2 z축 이동거리 : aka 티비 떨어져서 봐라
-
   const what = 30; //K1
 
-  let A = 1; //x축 기준 회전도
+  let A = 0; //x축 기준 회전도
   let B = 0; // 아마 z축 기준으로 회전 A=0일 때 전면 움직임 보이지 않음
 
   let shades = '.,-~:;=!*#$@'.split(''); //나중에 shade로 쓸 것 미리 따놓기
@@ -58,7 +62,7 @@ function donut() {
         let y = (yOffset + (what / 2) * D * (l * h * n + t * m)) << 0;
         let o = (x + canvasWidth * y) << 0; //canvasWidth * y 만큼 y축 하방 이동 후 맨 앞부터 x 만큼 이동해서 점을 찍는다.
         //let shadeConstant = (((shades.length + 1) * 2) / 3) << 0; // ceil(shade.length * (2/3))
-        let shadeConstant = 3 ; //shade 배열에 저장된 10개의 기호 중 몇 개 사용할지 상수
+        let shadeConstant = (((shades.length + 1) * 2) / 3) << 0; ; //shade 배열에 저장된 10개의 기호 중 몇 개 사용할지 상수
         let N =
           (shadeConstant *
             ((f * e - c * d * g) * m - c * d * e - f * g - l * d * n)) <<
