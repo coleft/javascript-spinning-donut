@@ -48,7 +48,7 @@ function donut() {
         let f = Math.sin(j);  //sin세타
         let g = Math.cos(A);  //상수 cosA
 
-        let h = d + innerRadius; 
+        let h = d + innerRadius; //section
 
         let D = 1 / (c * h * e + f * g + fov); //바로 Z^-1값 90도 꺾임
 

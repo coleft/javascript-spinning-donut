@@ -50,6 +50,7 @@ function donut(){
                 // 도넛의 단면(베이글 자르는 방향이랑 수직)
                 let section = cosi + radius;
 
+
                 // 도넛 z + k2 좌표값의 역수(스크린에 비출 때 k2만큼 평행이동 = 티비 떨어져서 봐라)
                 // 함수 내부에 코사인과 사인 위치를 몇몇 바꿔서 도넛의 구멍이 전면을 바라보게 했다.
                 let zReciprocal = 1 / (sinj * section * sinxSpin + sini * cosxSpin + k2);
@@ -67,7 +68,7 @@ function donut(){
                 let luminantN = (lumConstant * ((sini * sinxSpin - sinj * cosi * cosxSpin ) * coszSpin - sinj * cosi * sinxSpin - sini * cosxSpin - cosj * cosi * sinzSpin)) << 0;
 
                 if (height > y && y > 0 &&
-                    width > x && x > 0 &&
+                    x > 0 && width > x && 
                     zReciprocal > zBuffer[coordinate]){
                         zBuffer[coordinate] = zReciprocal;
                         bBuffer[coordinate] = contrast[luminantN > 0 ? luminantN : 0];
@@ -86,8 +87,8 @@ function donut(){
                 laser = [];
             }
 
-            xSpin += 0.000071;
-            zSpin += 0.000023;
+            xSpin += 0.000007;
+            zSpin += 0.0000003;
         }
     }, 100)
 }
